@@ -490,13 +490,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/GameManager.ts":
+/*!****************************!*\
+  !*** ./src/GameManager.ts ***!
+  \****************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.GameManager = void 0;\r\nvar index_1 = __webpack_require__(/*! rot-js/lib/index */ \"./node_modules/rot-js/lib/index.js\");\r\nvar GameManager = /** @class */ (function () {\r\n    function GameManager() {\r\n        this.sanityCheck();\r\n    }\r\n    /*\r\n     *  Temporary sanity check\r\n     */\r\n    GameManager.prototype.sanityCheck = function () {\r\n        var options = {\r\n            width: 75,\r\n            height: 30,\r\n            fontSize: 16,\r\n            spacing: 1.0\r\n        };\r\n        var display = new index_1.Display(options);\r\n        document.body.appendChild(display.getContainer());\r\n        for (var x = 0; x < options.width; ++x) {\r\n            for (var y = 0; y < options.height; ++y) {\r\n                if (!x || !y || x + 1 == options.width || y + 1 == options.height) {\r\n                    display.draw(x, y, \"#\", \"lightgray\", \"black\");\r\n                }\r\n                else {\r\n                    display.draw(x, y, \".\", \"lightgray\", \"black\");\r\n                }\r\n            }\r\n        }\r\n        display.draw(options.width >> 1, options.height >> 1, \"@\", \"goldenrod\", \"black\");\r\n    };\r\n    return GameManager;\r\n}());\r\nexports.GameManager = GameManager;\r\n\n\n//# sourceURL=webpack://untitled/./src/GameManager.ts?");
+
+/***/ }),
+
 /***/ "./src/main.ts":
 /*!*********************!*\
   !*** ./src/main.ts ***!
   \*********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar index_1 = __webpack_require__(/*! rot-js/lib/index */ \"./node_modules/rot-js/lib/index.js\");\r\n/*\r\n *  Temporary sanity check\r\n */\r\nfunction sanityCheck() {\r\n    var options = {\r\n        width: 75,\r\n        height: 30,\r\n        fontSize: 16,\r\n        spacing: 1.0\r\n    };\r\n    var display = new index_1.Display(options);\r\n    document.body.appendChild(display.getContainer());\r\n    for (var x = 0; x < options.width; ++x) {\r\n        for (var y = 0; y < options.height; ++y) {\r\n            if (!x || !y || x + 1 == options.width || y + 1 == options.height) {\r\n                display.draw(x, y, \"#\", \"lightgray\", \"black\");\r\n            }\r\n            else {\r\n                display.draw(x, y, \".\", \"lightgray\", \"black\");\r\n            }\r\n        }\r\n    }\r\n    display.draw(options.width >> 1, options.height >> 1, \"@\", \"goldenrod\", \"black\");\r\n}\r\nsanityCheck();\r\n\n\n//# sourceURL=webpack://untitled/./src/main.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar GameManager_1 = __webpack_require__(/*! ./GameManager */ \"./src/GameManager.ts\");\r\ndocument.body.onload = function () {\r\n    var gameManager = new GameManager_1.GameManager();\r\n};\r\n\n\n//# sourceURL=webpack://untitled/./src/main.ts?");
 
 /***/ })
 
