@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: deploy
-        run: git subtree push --prefix dist origin gh-pages
+        run: git subtree push --prefix dist gh-pages
