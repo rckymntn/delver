@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "live": "live-server --port=8085",
+    "live": "live-server --port=8085 --open=dist/index.html",
     "watchlive": "run-p watch live",
     "minify": "minify dist/main.js > dist/main.min.js"
   },
