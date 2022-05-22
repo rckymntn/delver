@@ -4,8 +4,11 @@ import { Position } from "./Position";
 
 export class Player implements Actor {
     
+    position: Position;
+    glyph: Glyph;
+    isPassable: boolean;
     
-    constructor(public position: Position, public glyph: Glyph) {
+    constructor() {
 
     }
 
