@@ -9,6 +9,7 @@ export class Player implements Actor {
     isPassable: boolean;
     
     constructor(public position: Position) {
+        this.position = position;
         this.glyph = new Glyph("@", "goldenrod", "black");
         this.type = ActorType.Player;
     }
