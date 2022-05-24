@@ -1,15 +1,16 @@
-import { Actor } from "./Actor";
+import { Actor, ActorType } from "./Actor";
 import { Glyph } from "./Glyph";
 import { Position } from "./Position";
 
 export class Player implements Actor {
     
-    position: Position;
     glyph: Glyph;
+    type: ActorType;
     isPassable: boolean;
     
-    constructor() {
-
+    constructor(public position: Position) {
+        this.glyph = new Glyph("@", "goldenrod", "black");
+        this.type = ActorType.Player;
     }
 
     action(): Promise<any> {
