@@ -1,16 +1,25 @@
 import { Display } from "rot-js/lib/index";
+import { Glyph } from "./Glyph";
+import { Player } from "./Player";
+import { Position } from "./Position";
 
 export class GameManager {
+
+    private display: Display;
 
     constructor() {
         this.sanityCheck();
     }
 
+    drawEntity(position: Position, glyph: Glyph) {
+        this.display.draw(position.x, position.y, glyph.char, glyph.fgColor, glyph.bgColor)
+    }
 
     /*
      *  Temporary sanity check
      */
     sanityCheck() {
+
         let options = {
             width: 75,
             height: 30,
@@ -19,6 +28,8 @@ export class GameManager {
         };
         let display = new Display(options);
         document.body.appendChild(display.getContainer());
+
+        let player: Player = new Player(new Position(options.width >> 1, options.height >> 1));
         
         for (let x = 0; x < options.width; ++x) {
             for (let y = 0; y < options.height; ++y) {
@@ -30,6 +41,6 @@ export class GameManager {
             }
         }
         
-        display.draw(options.width >> 1, options.height >> 1, "@", "goldenrod", "black");
+        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);
     }
 }
