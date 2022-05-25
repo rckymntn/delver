@@ -1,5 +1,6 @@
 import { Display } from "rot-js/lib/index";
 import { Glyph } from "./Glyph";
+import { Goblin } from "./Goblin";
 import { Player } from "./Player";
 import { Position } from "./Position";
 
@@ -38,5 +39,7 @@ export class GameManager {
         }
         let player: Player = new Player(new Position(options.width >> 1, options.height >> 1));
         display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);
+        let goblin: Goblin = new Goblin(new Position(5, 5));
+        display.draw(goblin.position.x, goblin.position.y, goblin.glyph.char, goblin.glyph.fgColor, goblin.glyph.bgColor);
     }
 }
