@@ -496,7 +496,47 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.GameManager = void 0;\r\nvar index_1 = __webpack_require__(/*! rot-js/lib/index */ \"./node_modules/rot-js/lib/index.js\");\r\nvar GameManager = /** @class */ (function () {\r\n    function GameManager() {\r\n        this.sanityCheck();\r\n    }\r\n    /*\r\n     *  Temporary sanity check\r\n     */\r\n    GameManager.prototype.sanityCheck = function () {\r\n        var options = {\r\n            width: 75,\r\n            height: 30,\r\n            fontSize: 16,\r\n            spacing: 1.0\r\n        };\r\n        var display = new index_1.Display(options);\r\n        document.body.appendChild(display.getContainer());\r\n        for (var x = 0; x < options.width; ++x) {\r\n            for (var y = 0; y < options.height; ++y) {\r\n                if (!x || !y || x + 1 == options.width || y + 1 == options.height) {\r\n                    display.draw(x, y, \"#\", \"lightgray\", \"black\");\r\n                }\r\n                else {\r\n                    display.draw(x, y, \".\", \"lightgray\", \"black\");\r\n                }\r\n            }\r\n        }\r\n        display.draw(options.width >> 1, options.height >> 1, \"@\", \"goldenrod\", \"black\");\r\n    };\r\n    return GameManager;\r\n}());\r\nexports.GameManager = GameManager;\r\n\n\n//# sourceURL=webpack://untitled/./src/GameManager.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.GameManager = void 0;\r\nvar index_1 = __webpack_require__(/*! rot-js/lib/index */ \"./node_modules/rot-js/lib/index.js\");\r\nvar Goblin_1 = __webpack_require__(/*! ./Goblin */ \"./src/Goblin.ts\");\r\nvar Player_1 = __webpack_require__(/*! ./Player */ \"./src/Player.ts\");\r\nvar Position_1 = __webpack_require__(/*! ./Position */ \"./src/Position.ts\");\r\nvar GameManager = /** @class */ (function () {\r\n    function GameManager() {\r\n        this.displayOptions = {\r\n            width: 75,\r\n            height: 30,\r\n            fontSize: 16,\r\n            spacing: 1.0\r\n        };\r\n        this.display = new index_1.Display(this.displayOptions);\r\n        document.body.appendChild(this.display.getContainer());\r\n        this.tempMapGen(this.display, this.displayOptions);\r\n        this.player = new Player_1.Player(new Position_1.Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));\r\n        this.drawEntity(this.player, this.display);\r\n    }\r\n    GameManager.prototype.tempMapGen = function (display, displayOptions) {\r\n        for (var x = 0; x < displayOptions.width; x++) {\r\n            for (var y = 0; y < displayOptions.height; y++) {\r\n                if (!x || !y || x + 1 == displayOptions.width || y + 1 == displayOptions.height) {\r\n                    display.draw(x, y, \"#\", \"lightgray\", \"black\");\r\n                }\r\n                else {\r\n                    display.draw(x, y, \".\", \"lightgray\", \"black\");\r\n                }\r\n            }\r\n        }\r\n    };\r\n    GameManager.prototype.drawPlayer = function (player, display) {\r\n        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);\r\n    };\r\n    GameManager.prototype.drawActor = function (actor, display) {\r\n        display.draw(actor.position.x, actor.position.y, actor.glyph.char, actor.glyph.fgColor, actor.glyph.bgColor);\r\n    };\r\n    GameManager.prototype.drawEntity = function (entity, display) {\r\n        display.draw(entity.position.x, entity.position.y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor);\r\n    };\r\n    /*\r\n     *  Temporary sanity check\r\n     */\r\n    GameManager.prototype.sanityCheck = function () {\r\n        var options = {\r\n            width: 75,\r\n            height: 30,\r\n            fontSize: 16,\r\n            spacing: 1.0\r\n        };\r\n        var display = new index_1.Display(options);\r\n        document.body.appendChild(display.getContainer());\r\n        for (var x = 0; x < options.width; x++) {\r\n            for (var y = 0; y < options.height; y++) {\r\n                if (!x || !y || x + 1 == options.width || y + 1 == options.height) {\r\n                    display.draw(x, y, \"#\", \"lightgray\", \"black\");\r\n                }\r\n                else {\r\n                    display.draw(x, y, \".\", \"lightgray\", \"black\");\r\n                }\r\n            }\r\n        }\r\n        var player = new Player_1.Player(new Position_1.Position(options.width >> 1, options.height >> 1));\r\n        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);\r\n        var goblin = new Goblin_1.Goblin(new Position_1.Position(5, 5));\r\n        display.draw(goblin.position.x, goblin.position.y, goblin.glyph.char, goblin.glyph.fgColor, goblin.glyph.bgColor);\r\n    };\r\n    return GameManager;\r\n}());\r\nexports.GameManager = GameManager;\r\n\n\n//# sourceURL=webpack://untitled/./src/GameManager.ts?");
+
+/***/ }),
+
+/***/ "./src/Glyph.ts":
+/*!**********************!*\
+  !*** ./src/Glyph.ts ***!
+  \**********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Glyph = void 0;\r\nvar Glyph = /** @class */ (function () {\r\n    function Glyph(char, fgColor, bgColor) {\r\n        this.char = char;\r\n        this.fgColor = fgColor;\r\n        this.bgColor = bgColor;\r\n        this.char = char;\r\n        this.fgColor = fgColor;\r\n        this.bgColor = bgColor;\r\n    }\r\n    return Glyph;\r\n}());\r\nexports.Glyph = Glyph;\r\n\n\n//# sourceURL=webpack://untitled/./src/Glyph.ts?");
+
+/***/ }),
+
+/***/ "./src/Goblin.ts":
+/*!***********************!*\
+  !*** ./src/Goblin.ts ***!
+  \***********************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Goblin = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Goblin = /** @class */ (function () {\r\n    function Goblin(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"G\", \"green\", \"black\");\r\n        this.type = 1 /* Goblin */;\r\n    }\r\n    Goblin.prototype.action = function () {\r\n        return;\r\n    };\r\n    return Goblin;\r\n}());\r\nexports.Goblin = Goblin;\r\n\n\n//# sourceURL=webpack://untitled/./src/Goblin.ts?");
+
+/***/ }),
+
+/***/ "./src/Player.ts":
+/*!***********************!*\
+  !*** ./src/Player.ts ***!
+  \***********************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Player = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Player = /** @class */ (function () {\r\n    function Player(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"@\", \"goldenrod\", \"black\");\r\n        this.type = 0 /* Player */;\r\n    }\r\n    Player.prototype.action = function () {\r\n        return;\r\n    };\r\n    return Player;\r\n}());\r\nexports.Player = Player;\r\n\n\n//# sourceURL=webpack://untitled/./src/Player.ts?");
+
+/***/ }),
+
+/***/ "./src/Position.ts":
+/*!*************************!*\
+  !*** ./src/Position.ts ***!
+  \*************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Position = void 0;\r\nvar Position = /** @class */ (function () {\r\n    function Position(x, y) {\r\n        this.x = x;\r\n        this.y = y;\r\n        this.x = x;\r\n        this.y = y;\r\n    }\r\n    Position.prototype.equals = function (position) {\r\n        return (this.x === position.x && this.y === position.y);\r\n    };\r\n    return Position;\r\n}());\r\nexports.Position = Position;\r\n\n\n//# sourceURL=webpack://untitled/./src/Position.ts?");
 
 /***/ }),
 
