@@ -9,6 +9,8 @@ export class GameManager {
     private displayOptions;
     private display: Display;
 
+    private player: Player;
+
     constructor() {
         this.displayOptions = {
             width: 75,
@@ -18,7 +20,19 @@ export class GameManager {
         };
         this.display = new Display(this.displayOptions);
         document.body.appendChild(this.display.getContainer());
-        //this.sanityCheck();
+        this.tempMapGen(this.display, this.displayOptions);
+    }
+
+    tempMapGen(display: Display, displayOptions) {
+        for (let x = 0; x < displayOptions.width; x++) {
+            for (let y = 0; y < displayOptions.height; y++) {
+                if (!x || !y || x + 1 == displayOptions.width || y + 1 == displayOptions.height) {
+                    display.draw(x, y, "#", "lightgray", "black");
+                } else {
+                    display.draw(x, y, ".", "lightgray", "black");
+                }
+            }
+        }
     }
 
     drawEntity(position: Position, glyph: Glyph) {
