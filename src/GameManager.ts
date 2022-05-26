@@ -1,4 +1,6 @@
 import { Display } from "rot-js/lib/index";
+import { Actor } from "./Actor";
+import { Entity } from "./Entity";
 import { Glyph } from "./Glyph";
 import { Goblin } from "./Goblin";
 import { Player } from "./Player";
@@ -21,6 +23,8 @@ export class GameManager {
         this.display = new Display(this.displayOptions);
         document.body.appendChild(this.display.getContainer());
         this.tempMapGen(this.display, this.displayOptions);
+        this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
+        this.drawEntity(this.player, this.display);
     }
 
     tempMapGen(display: Display, displayOptions) {
@@ -35,8 +39,16 @@ export class GameManager {
         }
     }
 
-    drawEntity(position: Position, glyph: Glyph) {
-        this.display.draw(position.x, position.y, glyph.char, glyph.fgColor, glyph.bgColor)
+    drawPlayer(player: Player, display: Display) {
+        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);
+    }
+
+    drawActor(actor: Actor, display: Display) {
+        display.draw(actor.position.x, actor.position.y, actor.glyph.char, actor.glyph.fgColor, actor.glyph.bgColor);
+    }
+
+    drawEntity(entity: Entity, display: Display) {
+        display.draw(entity.position.x, entity.position.y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
     }
 
     /*
