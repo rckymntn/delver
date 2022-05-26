@@ -6,10 +6,19 @@ import { Position } from "./Position";
 
 export class GameManager {
 
+    private displayOptions;
     private display: Display;
 
     constructor() {
-        this.sanityCheck();
+        this.displayOptions = {
+            width: 75,
+            height: 30,
+            fontSize: 16,
+            spacing: 1.0
+        };
+        this.display = new Display(this.displayOptions);
+        document.body.appendChild(this.display.getContainer());
+        //this.sanityCheck();
     }
 
     drawEntity(position: Position, glyph: Glyph) {
