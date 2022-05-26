@@ -1,10 +1,12 @@
 import { Display } from "rot-js/lib/index";
 import { Actor } from "./Actor";
 import { Entity } from "./Entity";
+import { Floor } from "./Floor";
 import { Glyph } from "./Glyph";
 import { Goblin } from "./Goblin";
 import { Player } from "./Player";
 import { Position } from "./Position";
+import { Wall } from "./Wall";
 
 export class GameManager {
 
@@ -24,16 +26,18 @@ export class GameManager {
         document.body.appendChild(this.display.getContainer());
         this.tempMapGen(this.display, this.displayOptions);
         this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
-        this.drawEntity(this.player, this.display);
+        this.drawEntity(this.player);
     }
 
     tempMapGen(display: Display, displayOptions) {
         for (let x = 0; x < displayOptions.width; x++) {
             for (let y = 0; y < displayOptions.height; y++) {
                 if (!x || !y || x + 1 == displayOptions.width || y + 1 == displayOptions.height) {
-                    display.draw(x, y, "#", "lightgray", "black");
+                    //display.draw(x, y, "#", "lightgray", "black");
+                    this.drawEntity(new Wall(new Position(x, y)));
                 } else {
-                    display.draw(x, y, ".", "lightgray", "black");
+                    //display.draw(x, y, ".", "lightgray", "black");
+                    this.drawEntity(new Floor(new Position(x, y)))
                 }
             }
         }
@@ -47,8 +51,8 @@ export class GameManager {
         display.draw(actor.position.x, actor.position.y, actor.glyph.char, actor.glyph.fgColor, actor.glyph.bgColor);
     }
 
-    drawEntity(entity: Entity, display: Display) {
-        display.draw(entity.position.x, entity.position.y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
+    drawEntity(entity: Entity) {
+        this.display.draw(entity.position.x, entity.position.y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
     }
 
     /*
