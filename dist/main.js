@@ -496,7 +496,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Floor = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Floor = /** @class */ (function () {\r\n    function Floor(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\".\", \"lightgray\", \"black\");\r\n        this.type = 0 /* Floor */;\r\n    }\r\n    return Floor;\r\n}());\r\nexports.Floor = Floor;\r\n\n\n//# sourceURL=webpack://untitled/./src/Floor.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Floor = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Floor = /** @class */ (function () {\r\n    function Floor(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\".\", \"lightgray\", \"black\");\r\n        this.type = 0 /* Floor */;\r\n        this.isPassable = true;\r\n    }\r\n    return Floor;\r\n}());\r\nexports.Floor = Floor;\r\n\n\n//# sourceURL=webpack://untitled/./src/Floor.ts?");
 
 /***/ }),
 
@@ -526,7 +526,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
   \***********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Goblin = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Goblin = /** @class */ (function () {\r\n    function Goblin(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"G\", \"green\", \"black\");\r\n        this.type = 1 /* Goblin */;\r\n    }\r\n    Goblin.prototype.action = function () {\r\n        return;\r\n    };\r\n    return Goblin;\r\n}());\r\nexports.Goblin = Goblin;\r\n\n\n//# sourceURL=webpack://untitled/./src/Goblin.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Goblin = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Goblin = /** @class */ (function () {\r\n    function Goblin(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"G\", \"green\", \"black\");\r\n        this.type = 1 /* Goblin */;\r\n        this.isPassable = false;\r\n    }\r\n    Goblin.prototype.action = function () {\r\n        return;\r\n    };\r\n    return Goblin;\r\n}());\r\nexports.Goblin = Goblin;\r\n\n\n//# sourceURL=webpack://untitled/./src/Goblin.ts?");
 
 /***/ }),
 
@@ -536,7 +536,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
   \***********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Player = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Player = /** @class */ (function () {\r\n    function Player(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"@\", \"goldenrod\", \"black\");\r\n        this.type = 0 /* Player */;\r\n    }\r\n    Player.prototype.action = function () {\r\n        return;\r\n    };\r\n    return Player;\r\n}());\r\nexports.Player = Player;\r\n\n\n//# sourceURL=webpack://untitled/./src/Player.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Player = void 0;\r\nvar rot_js_1 = __webpack_require__(/*! rot-js */ \"./node_modules/rot-js/lib/index.js\");\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Player = /** @class */ (function () {\r\n    function Player(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"@\", \"goldenrod\", \"black\");\r\n        this.type = 0 /* Player */;\r\n        this.keyBinds = {};\r\n        // Indexes using rot.js DIRS[4] (four-directional)\r\n        this.keyBinds[rot_js_1.KEYS.VK_A] = 0; // DIRS[4][0] = (-1, 0) \r\n        this.keyBinds[rot_js_1.KEYS.VK_D] = 1; // DIRS[4][1] = (1, 0) \r\n        this.keyBinds[rot_js_1.KEYS.VK_W] = 2; // DIRS[4][2] = (0, 1)\r\n        this.keyBinds[rot_js_1.KEYS.VK_S] = 3; // DIRS[4][3] = (0, -1)\r\n    }\r\n    Player.prototype.action = function () {\r\n        return;\r\n    };\r\n    Player.prototype.processAction = function (event) {\r\n        if (event.key in this.keyBinds) {\r\n            var newPosition = this.resolveNewPosition(this.position, this.keyBinds[event.key]);\r\n        }\r\n    };\r\n    Player.prototype.resolveNewPosition = function (position, dxdy) {\r\n        position.x += dxdy[0];\r\n        position.y += dxdy[1];\r\n        return position;\r\n    };\r\n    return Player;\r\n}());\r\nexports.Player = Player;\r\n\n\n//# sourceURL=webpack://untitled/./src/Player.ts?");
 
 /***/ }),
 
@@ -556,7 +556,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
   \*********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Wall = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Wall = /** @class */ (function () {\r\n    function Wall(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"#\", \"lightgray\", \"black\");\r\n        this.type = 1 /* Wall */;\r\n    }\r\n    return Wall;\r\n}());\r\nexports.Wall = Wall;\r\n\n\n//# sourceURL=webpack://untitled/./src/Wall.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.Wall = void 0;\r\nvar Glyph_1 = __webpack_require__(/*! ./Glyph */ \"./src/Glyph.ts\");\r\nvar Wall = /** @class */ (function () {\r\n    function Wall(position) {\r\n        this.position = position;\r\n        this.position = position;\r\n        this.glyph = new Glyph_1.Glyph(\"#\", \"lightgray\", \"black\");\r\n        this.type = 1 /* Wall */;\r\n        this.isPassable = false;\r\n    }\r\n    return Wall;\r\n}());\r\nexports.Wall = Wall;\r\n\n\n//# sourceURL=webpack://untitled/./src/Wall.ts?");
 
 /***/ }),
 
