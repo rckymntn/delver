@@ -12,5 +12,6 @@ export class Floor implements Prop {
         this.position = position;
         this.glyph = new Glyph(".", "lightgray", "black");
         this.type = PropType.Floor;
+        this.isPassable = true;
     }
 }

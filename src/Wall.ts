@@ -12,5 +12,6 @@ export class Wall implements Prop {
         this.position = position;
         this.glyph = new Glyph("#", "lightgray", "black");
         this.type = PropType.Wall;
+        this.isPassable = false;
     }
 }

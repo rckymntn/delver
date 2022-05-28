@@ -12,6 +12,7 @@ export class Goblin implements Actor {
         this.position = position;
         this.glyph = new Glyph("G", "green", "black");
         this.type = ActorType.Goblin;
+        this.isPassable = false;
     }
 
     action(): Promise<any> {
