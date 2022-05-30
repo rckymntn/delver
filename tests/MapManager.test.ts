@@ -66,9 +66,6 @@ test("resolveNewPosition: zero dx, zero dy", () => {
     let position: Position = new Position(0, 0);
     let expected: Position = new Position(0, 0);
     let actual: Position = mapManager.resolveNewPosition(position, [0, 0]);
-    console.log(position);
-    console.log(expected);
-    console.log(actual);
     expect(actual).toEqual(expected);
 });
 
@@ -77,9 +74,6 @@ test("resolveNewPosition: positive dx, positive dy", () => {
     let position: Position = new Position(0, 0);
     let expected: Position = new Position(1, 1);
     let actual: Position = mapManager.resolveNewPosition(position, [1, 1]);
-    console.log(position);
-    console.log(expected);
-    console.log(actual);
     expect(actual).toEqual(expected);
     expect(actual).not.toEqual(position);
 });
@@ -89,9 +83,6 @@ test("resolveNewPosition: negative dx, negative dy", () => {
     let position: Position = new Position(0, 0);
     let expected: Position = new Position(-1, -1);
     let actual: Position = mapManager.resolveNewPosition(position, [-1, -1]);
-    console.log(position);
-    console.log(expected);
-    console.log(actual);
     expect(actual).toEqual(expected);
     expect(actual).not.toEqual(position);
 });
