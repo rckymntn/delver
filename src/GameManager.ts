@@ -1,9 +1,10 @@
 import { Display } from "rot-js/lib/index";
-import { Actor } from "./Actor";
+import { Actor, ActorType } from "./Actor";
 import { Entity } from "./Entity";
 import { Floor } from "./Floor";
 import { Glyph } from "./Glyph";
 import { Goblin } from "./Goblin";
+import { MapManager } from "./MapManager";
 import { Player } from "./Player";
 import { Position } from "./Position";
 import { Wall } from "./Wall";
@@ -13,46 +14,58 @@ export class GameManager {
     private displayOptions;
     private display: Display;
 
+    private mapManager: MapManager;
+
     private player: Player;
+
+    private actors: Actor[];
 
     constructor() {
         this.displayOptions = {
             width: 75,
             height: 30,
-            fontSize: 16,
+            fontSize: 21,
             spacing: 1.0
         };
         this.display = new Display(this.displayOptions);
         document.body.appendChild(this.display.getContainer());
-        this.tempMapGen(this.display, this.displayOptions);
+        
+        this.mapManager = new MapManager();
+        this.mapManager.cellularMap(this.displayOptions.width, this.displayOptions.height);
+        this.drawMap();
+
         this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
         this.drawEntity(this.player);
+        let goblin: Goblin = new Goblin(new Position(5, 5));
+        this.drawEntity(goblin);
+        this.loop();
     }
 
-    tempMapGen(display: Display, displayOptions) {
-        for (let x = 0; x < displayOptions.width; x++) {
-            for (let y = 0; y < displayOptions.height; y++) {
-                if (!x || !y || x + 1 == displayOptions.width || y + 1 == displayOptions.height) {
-                    //display.draw(x, y, "#", "lightgray", "black");
-                    this.drawEntity(new Wall(new Position(x, y)));
-                } else {
-                    //display.draw(x, y, ".", "lightgray", "black");
-                    this.drawEntity(new Floor(new Position(x, y)))
-                }
-            }
+    private drawEntity(entity: Entity): void {
+        this.display.draw(entity.getPosition().x, entity.getPosition().y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
+    }
+
+    private drawMap(): void {
+        for (let key in this.mapManager.map) {
+            this.drawEntity(this.mapManager.map[key]);
         }
     }
 
-    drawPlayer(player: Player, display: Display) {
-        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);
+    private refresh(): void {
+        this.display.clear();
+        this.drawMap();
+        this.drawEntity(this.player);
     }
 
-    drawActor(actor: Actor, display: Display) {
-        display.draw(actor.position.x, actor.position.y, actor.glyph.char, actor.glyph.fgColor, actor.glyph.bgColor);
+    private init(): void {
+        return;
     }
 
-    drawEntity(entity: Entity) {
-        this.display.draw(entity.position.x, entity.position.y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
+    private async loop(): Promise<any> {
+        while (true) {
+            await this.player.action(this.mapManager);
+            this.refresh();
+        }
     }
 
     /*
