@@ -1,17 +1,44 @@
 import { Glyph } from "./Glyph";
 import { Position } from "./Position";
-import { Prop, PropType } from "./Prop"
+import { Tile, TileType } from "./Tile";
 
-export class Wall implements Prop {
+export class Wall implements Tile {
 
     glyph: Glyph;
-    type: PropType;
-    isPassable: boolean;
+    type: TileType;
+    passable: boolean;
+    occupied: boolean;
 
     constructor(public position: Position) {
         this.position = position;
         this.glyph = new Glyph("#", "lightgray", "black");
-        this.type = PropType.Wall;
-        this.isPassable = false;
+        this.type = TileType.Wall;
+        this.passable = false;
+        this.occupied = false;
     }
+
+    getPosition(): Position {
+        return this.position;
+    }
+
+    setPosition(posiiton: Position): void {
+        this.position = posiiton;
+    }
+
+    getPassable(): boolean {
+        return this.passable;
+    }
+
+    setPassable(bool: boolean): void {
+        this.passable = bool;
+    }
+
+    getOccupied(): boolean {
+        return this.occupied;
+    }
+
+    setOccupied(bool: boolean): void {
+        this.occupied = bool;
+    }
+
 }
