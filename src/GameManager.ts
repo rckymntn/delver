@@ -27,17 +27,28 @@ export class GameManager {
             fontSize: 21,
             spacing: 1.0
         };
+
+        this.actors = [];
+
         this.display = new Display(this.displayOptions);
         document.body.appendChild(this.display.getContainer());
         
         this.mapManager = new MapManager();
         this.mapManager.cellularMap(this.displayOptions.width, this.displayOptions.height);
-        this.drawMap();
 
         this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
-        this.drawEntity(this.player);
-        let goblin: Goblin = new Goblin(new Position(5, 5));
-        this.drawEntity(goblin);
+        this.mapManager.setOccupied(this.player.position, true);
+        let goblin1: Goblin = new Goblin(new Position(5, 5));
+        this.mapManager.setOccupied(goblin1.position, true);
+        let goblin2: Goblin = new Goblin(new Position(this.player.position.x + 1, this.player.position.y));
+        this.mapManager.setOccupied(goblin2.position, true);
+        
+
+        this.actors.push(this.player);
+        this.actors.push(goblin1);
+        this.actors.push(goblin2);
+
+        this.init();
         this.loop();
     }
 
@@ -54,11 +65,14 @@ export class GameManager {
     private refresh(): void {
         this.display.clear();
         this.drawMap();
+        for (let actor of this.actors) {
+            this.drawEntity(actor);
+        }
         this.drawEntity(this.player);
     }
 
     private init(): void {
-        return;
+        this.refresh();
     }
 
     private async loop(): Promise<any> {
