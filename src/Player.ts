@@ -41,12 +41,12 @@ export class Player implements Actor {
         if (key.keyCode in this.keyBinds) {
             let dxdy = DIRS[4][this.keyBinds[key.keyCode]];
             let newPosition = new Position(this.position.x + dxdy[0], this.position.y + dxdy[1]);
-            if (mapManager.getPassable(newPosition)) {
+            if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
                 mapManager.setOccupied(this.position, false);
                 this.position = newPosition;
                 mapManager.setOccupied(this.position, true);
             } else if (mapManager.getOccupied(newPosition)) {
-
+                
             }
         }
     }
