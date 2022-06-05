@@ -1,4 +1,4 @@
-import { Display } from "rot-js/lib/index";
+import { Display, FOV } from "rot-js/lib/index";
 import { Actor, ActorType } from "./Actor";
 import { Entity } from "./Entity";
 import { Floor } from "./Floor";
@@ -52,16 +52,28 @@ export class GameManager {
         this.loop();
     }
 
+
+    /*
+     *  Draw an Entity (actor, tile, prop, etc.) to Display 
+     */
     private drawEntity(entity: Entity): void {
         this.display.draw(entity.getPosition().x, entity.getPosition().y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
     }
 
+
+    /*
+     *  Draw the current map
+     */
     private drawMap(): void {
         for (let key in this.mapManager.map) {
             this.drawEntity(this.mapManager.map[key]);
         }
     }
 
+
+    /*
+     *  Refreshing the screen, redrawing everything 
+     */
     private refresh(): void {
         this.display.clear();
         this.drawMap();
@@ -71,41 +83,21 @@ export class GameManager {
         this.drawEntity(this.player);
     }
 
+
+    /*
+     *  Initialize the game
+     */
     private init(): void {
         this.refresh();
     }
 
+    /*
+     *  Main game loop 
+     */
     private async loop(): Promise<any> {
         while (true) {
             await this.player.action(this.mapManager);
             this.refresh();
         }
-    }
-
-    /*
-     *  Temporary sanity check
-     */
-    sanityCheck() {
-        let options = {
-            width: 75,
-            height: 30,
-            fontSize: 16,
-            spacing: 1.0
-        };
-        let display = new Display(options);
-        document.body.appendChild(display.getContainer());
-        for (let x = 0; x < options.width; x++) {
-            for (let y = 0; y < options.height; y++) {
-                if (!x || !y || x + 1 == options.width || y + 1 == options.height) {
-                    display.draw(x, y, "#", "lightgray", "black");
-                } else {
-                    display.draw(x, y, ".", "lightgray", "black");
-                }
-            }
-        }
-        let player: Player = new Player(new Position(options.width >> 1, options.height >> 1));
-        display.draw(player.position.x, player.position.y, player.glyph.char, player.glyph.fgColor, player.glyph.bgColor);
-        let goblin: Goblin = new Goblin(new Position(5, 5));
-        display.draw(goblin.position.x, goblin.position.y, goblin.glyph.char, goblin.glyph.fgColor, goblin.glyph.bgColor);
     }
 }
