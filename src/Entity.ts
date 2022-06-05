@@ -4,5 +4,8 @@ import { Position } from "./Position";
 export interface Entity {
     position: Position;
     glyph: Glyph;
-    isPassable: boolean;
+    passable: boolean;
+
+    getPosition(): Position;
+    setPosition(posiiton: Position): void;
 }
