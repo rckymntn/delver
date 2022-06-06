@@ -18,22 +18,23 @@ export class Player implements Actor {
         this.type = ActorType.Player;
         this.keyBinds = {};
         // Indexes for using rot.js DIRS[4] (four-directional)
-        this.keyBinds[KEYS.VK_A] = 3;   // DIRS[4][0] = (-1, 0) 
-        this.keyBinds[KEYS.VK_D] = 1;   // DIRS[4][1] = (1, 0) 
+        // TODO: Refactor keybinds to not use rot.js DIRS and KeyboardEvent.code
+        // Use keyCode or key instead 
         this.keyBinds[KEYS.VK_W] = 0;   // DIRS[4][2] = (0, 1)
+        this.keyBinds[KEYS.VK_D] = 1;   // DIRS[4][1] = (1, 0) 
         this.keyBinds[KEYS.VK_S] = 2;   // DIRS[4][3] = (0, -1)
+        this.keyBinds[KEYS.VK_A] = 3;   // DIRS[4][0] = (-1, 0) 
     }
 
-    getPosition(): Position {
+    public getPosition(): Position {
         return this.position;
     }
 
-    setPosition(posiiton: Position): void {
+    public setPosition(posiiton: Position): void {
         this.position = posiiton;
     }
 
     async action(mapManager: MapManager): Promise<any> {
-        let action = false;
         //await new Promise((resolve) => setTimeout(resolve, 100));
         let key: KeyboardEvent = await new Promise((resolve) => {
             window.addEventListener("keydown", resolve, { once: true });
@@ -46,8 +47,26 @@ export class Player implements Actor {
                 this.position = newPosition;
                 mapManager.setOccupied(this.position, true);
             } else if (mapManager.getOccupied(newPosition)) {
-                
+                console.log(`Position ${newPosition.x}, ${newPosition.y} occupied.`);
             }
         }
     }
+
+    /*
+     * // Second pass at implementing player movement
+     * // Player action returns a position 
+     * // Position is then handled by GameManager to check if new position is occupied or passable and acts accordingly 
+     *
+     *async action(mapManager: MapManager): Promise<any> {
+     *    //await new Promise((resolve) => setTimeout(resolve, 100));
+     *    let key: KeyboardEvent = await new Promise((resolve) => {
+     *        window.addEventListener("keydown", resolve, { once: true });
+     *    });
+     *    if (key.keyCode in this.keyBinds) {
+     *        let dxdy = DIRS[4][this.keyBinds[key.keyCode]];
+     *        let newPosition = new Position(this.position.x + dxdy[0], this.position.y + dxdy[1]);
+     *        return newPosition;
+     *    }
+     *}
+     */
 }
