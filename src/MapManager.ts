@@ -1,4 +1,5 @@
 import { Map, RNG } from "rot-js";
+import Uniform from "rot-js/lib/map/uniform";
 import { Floor } from "./Floor";
 import { Position } from "./Position";
 import { Tile, TileType } from "./Tile";
@@ -30,6 +31,16 @@ export class MapManager {
 
     public positionToKey(position: Position): string {
         return `(${position.x}, ${position.y})`;
+    }
+
+    public getRandomPlayablePosition(tileType: TileType): Position {
+        let arr: Position[];
+        for (let key in this.map) {
+            if (this.map[key].type === tileType && this.map[key].getPassable() && !this.map[key].getOccupied()) {
+                arr.push(this.keyToPosition(key));
+            }
+        }
+        return arr[Math.floor(RNG.getUniform() * arr.length)];
     }
 
     public keyToPosition(key: string): Position {
@@ -81,7 +92,7 @@ export class MapManager {
         this.map[this.positionToKey(position)] = new Floor(position);
     }
 
-    public cellularMap(x: number, y: number, randomness: number = 0.5) {
+    public cellularMap(x: number, y: number, randomness: number = 0.3) {
         let cellular = new Map.Cellular(x, y);
         cellular.randomize(randomness);
         cellular.create(this.cellularCallback.bind(this));
