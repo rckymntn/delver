@@ -2,7 +2,7 @@ import { Entity } from "./Entity";
 
 export interface Tile extends Entity {
     occupied: boolean;
-    
+    type: TileType;
     getOccupied(): boolean;
     setOccupied(bool: boolean): void;
     getPassable(): boolean;
