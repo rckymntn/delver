@@ -33,10 +33,10 @@ export class MapManager {
         return `(${position.x}, ${position.y})`;
     }
 
-    public getRandomPlayablePosition(tileType: TileType): Position {
+    public getRandomPlayablePosition(): Position {
         let arr: Position[];
         for (let key in this.map) {
-            if (this.map[key].type === tileType && this.map[key].getPassable() && !this.map[key].getOccupied()) {
+            if (this.map[key].type === TileType.Floor && this.map[key].getPassable() && !this.map[key].getOccupied()) {
                 arr.push(this.keyToPosition(key));
             }
         }
