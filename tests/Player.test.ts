@@ -22,8 +22,8 @@ test("position", () => {
 
 test("keybinds", () => {
     let player: Player = new Player(new Position(0, 0));
-    expect(player.keyBinds[KEYS.VK_A]).toEqual(0);
+    expect(player.keyBinds[KEYS.VK_W]).toEqual(0);
     expect(player.keyBinds[KEYS.VK_D]).toEqual(1);
-    expect(player.keyBinds[KEYS.VK_W]).toEqual(2);
-    expect(player.keyBinds[KEYS.VK_S]).toEqual(3);
+    expect(player.keyBinds[KEYS.VK_S]).toEqual(2);
+    expect(player.keyBinds[KEYS.VK_A]).toEqual(3);
 });
