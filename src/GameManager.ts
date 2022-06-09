@@ -72,6 +72,14 @@ export class GameManager {
 
 
     /*
+     *  Populate the map 
+     */
+    private populate(): void {
+        
+    }
+
+
+    /*
      *  Refreshing the screen, redrawing everything 
      */
     private refresh(): void {
