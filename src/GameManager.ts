@@ -74,7 +74,7 @@ export class GameManager {
     /*
      *  Populate the map 
      */
-    private populate(): void {
+    private populate(difficulty: number = 0): void {
         
     }
 
@@ -104,6 +104,9 @@ export class GameManager {
      */
     private async loop(): Promise<any> {
         while (true) {
+            //for (let actor of this.actors) {
+            //    await actor.action(this.mapManager);
+            //}
             await this.player.action(this.mapManager);
             this.refresh();
         }
