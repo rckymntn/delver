@@ -62,6 +62,16 @@ export class GameManager {
 
 
     /*
+     *  Move an entity to a position and set/clear occupied state of new/old position 
+     */
+    private moveEntity(entity: Entity, position: Position): void {
+        this.mapManager.setOccupied(entity.getPosition(), false);
+        entity.setPosition(position);
+        this.mapManager.setOccupied(position, true);
+    }
+
+
+    /*
      *  Draw the current map
      */
     private drawMap(): void {
