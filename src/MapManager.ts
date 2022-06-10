@@ -29,10 +29,9 @@ export class MapManager {
         this.map[this.positionToKey(position)].setOccupied(boolean);
     }
 
-    public positionToKey(position: Position): string {
-        return `(${position.x}, ${position.y})`;
-    }
-
+    /*
+     *  Get a random passable and non-occupied floor tile
+     */
     public getRandomPlayablePosition(): Position {
         let arr: Position[] = [];
         for (let key in this.map) {
@@ -43,6 +42,16 @@ export class MapManager {
         return arr[Math.floor(RNG.getUniform() * arr.length)];
     }
 
+    /*
+     *  Convert a position to a key of the form "(x, y)"
+     */
+    public positionToKey(position: Position): string {
+        return `(${position.x}, ${position.y})`;
+    }
+
+    /*
+     *  Convert a key of the form "(x, y)" to a position
+     */
     public keyToPosition(key: string): Position {
         let splitKey: string[] = key.split(",");
         let x: number = Number(splitKey[0].replace("(", ""));
@@ -50,6 +59,9 @@ export class MapManager {
         return new Position(x, y);
     }
 
+    /*
+     *  Create a new digger map 
+     */
     public diggerMap(x: number, y: number): void {
         let digger = new Map.Digger(x, y);
         digger.create(this.diggerCallback.bind(this));
@@ -64,6 +76,9 @@ export class MapManager {
         this.map[this.positionToKey(position)] = new Floor(position);
     }
 
+    /*
+     *  Create a new arena map 
+     */
     public arenaMap(x: number, y: number) {
         let arena = new Map.Arena(x, y);
         arena.create(this.arenaCallback.bind(this));
@@ -78,6 +93,9 @@ export class MapManager {
         this.map[this.positionToKey(position)] = new Floor(position);
     }
 
+    /*
+     *  Create a new maze map
+     */
     public mazeMap(x: number, y: number) {
         let maze = new Map.DividedMaze(x, y);
         maze.create(this.mazeCallback.bind(this));
@@ -92,6 +110,9 @@ export class MapManager {
         this.map[this.positionToKey(position)] = new Floor(position);
     }
 
+    /*
+     *  Create a new cellular automata map
+     */
     public cellularMap(x: number, y: number, randomness: number = 0.3) {
         let cellular = new Map.Cellular(x, y);
         cellular.randomize(randomness);
