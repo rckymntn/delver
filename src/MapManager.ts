@@ -1,5 +1,4 @@
 import { Map, RNG } from "rot-js";
-import Uniform from "rot-js/lib/map/uniform";
 import { Floor } from "./Floor";
 import { Position } from "./Position";
 import { Tile, TileType } from "./Tile";

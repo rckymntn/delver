@@ -1,13 +1,10 @@
 import { Display, FOV } from "rot-js/lib/index";
 import { Actor, ActorType } from "./Actor";
 import { Entity } from "./Entity";
-import { Floor } from "./Floor";
-import { Glyph } from "./Glyph";
 import { Goblin } from "./Goblin";
 import { MapManager } from "./MapManager";
 import { Player } from "./Player";
 import { Position } from "./Position";
-import { Wall } from "./Wall";
 
 export class GameManager {
 
