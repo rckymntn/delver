@@ -1,5 +1,6 @@
-import { Display, FOV } from "rot-js/lib/index";
-import { Actor, ActorType } from "./Actor";
+import { Display, FOV, Scheduler } from "rot-js/lib/index";
+import Simple from "rot-js/lib/scheduler/simple";
+import { Actor } from "./Actor";
 import { Entity } from "./Entity";
 import { Goblin } from "./Goblin";
 import { MapManager } from "./MapManager";
@@ -12,6 +13,8 @@ export class GameManager {
     private display: Display;
 
     private mapManager: MapManager;
+
+    private scheduler: Simple;
 
     private player: Player;
 
@@ -33,22 +36,9 @@ export class GameManager {
         this.mapManager = new MapManager();
         this.mapManager.cellularMap(this.displayOptions.width, this.displayOptions.height);
 
-        this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
-        this.mapManager.setOccupied(this.player.position, true);
-        let goblin1: Goblin = new Goblin(new Position(5, 5));
-        this.mapManager.setOccupied(goblin1.position, true);
-        let goblin2: Goblin = new Goblin(new Position(this.player.position.x + 1, this.player.position.y));
-        this.mapManager.setOccupied(goblin2.position, true);
-        
-
-        this.actors.push(this.player);
-        this.actors.push(goblin1);
-        this.actors.push(goblin2);
-
         this.init();
         this.loop();
     }
-
 
     /*
      *  Draw an Entity (actor, tile, prop, etc.) to Display 
@@ -56,7 +46,6 @@ export class GameManager {
     private drawEntity(entity: Entity): void {
         this.display.draw(entity.getPosition().x, entity.getPosition().y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
     }
-
 
     /*
      *  Move an entity to a position and set/clear occupied state of new/old position 
@@ -67,7 +56,6 @@ export class GameManager {
         this.mapManager.setOccupied(position, true);
     }
 
-
     /*
      *  Draw the current map
      */
@@ -77,14 +65,34 @@ export class GameManager {
         }
     }
 
-
     /*
      *  Populate the map 
      */
     private populate(difficulty: number = 0): void {
+        this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
+        this.mapManager.setOccupied(this.player.position, true);
+        let goblin1: Goblin = new Goblin(new Position(5, 5));
+        this.mapManager.setOccupied(goblin1.position, true);
+        let goblin2: Goblin = new Goblin(new Position(this.player.position.x + 1, this.player.position.y));
+        this.mapManager.setOccupied(goblin2.position, true);
         
+        this.actors.push(this.player);
+        this.actors.push(goblin1);
+        this.actors.push(goblin2);
     }
 
+    /*
+     *  Initialize the game
+     */
+    private init(): void {
+        this.populate();
+        this.scheduler = new Scheduler.Simple();
+        for (let actor of this.actors) {
+            this.scheduler.add(actor, true);
+        }
+        // Initialize all game components before refreshing 
+        this.refresh();
+    }
 
     /*
      *  Refreshing the screen, redrawing everything 
@@ -96,14 +104,6 @@ export class GameManager {
             this.drawEntity(actor);
         }
         this.drawEntity(this.player);
-    }
-
-
-    /*
-     *  Initialize the game
-     */
-    private init(): void {
-        this.refresh();
     }
 
     /*
