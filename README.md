@@ -1,4 +1,6 @@
-# Untitled - A roguelike built with rot.js and TypeScript
+# Untitled 
+
+A roguelike built with TypeScript and rot.js
 
 ## Developer commands 
 
