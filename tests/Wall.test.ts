@@ -24,3 +24,12 @@ test("occupied", () => {
     expect(wall.getOccupied()).toEqual(true);
 });
 
+test("passable", () => {
+    let wall: Wall = new Wall(new Position(0, 0));
+    expect(wall.getPassable()).toEqual(false);
+});
+
+test("tiletype", () => {
+    let wall: Wall = new Wall(new Position(0, 0));
+    expect(wall.type).toEqual(TileType.Wall);
+});
