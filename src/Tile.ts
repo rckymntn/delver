@@ -8,6 +8,7 @@ export interface Tile extends Entity {
     setOccupied(bool: boolean): void;
     getPassable(): boolean;
     setPassable(bool: boolean): void;
+    getType(): TileType;
 }
 
 export const enum TileType {

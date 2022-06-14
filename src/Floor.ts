@@ -40,4 +40,8 @@ export class Floor implements Tile {
     setOccupied(bool: boolean): void {
         this.occupied = bool;
     }
+
+    getType(): TileType {
+        return this.type;
+    }
 }

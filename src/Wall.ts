@@ -41,4 +41,8 @@ export class Wall implements Tile {
         this.occupied = bool;
     }
 
+    getType(): TileType {
+        return this.type;
+    }
+
 }
