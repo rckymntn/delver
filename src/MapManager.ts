@@ -45,7 +45,7 @@ export class MapManager {
      *  Convert a position to a key of the form "(x, y)"
      */
     public positionToKey(position: Position): string {
-        return `(${position.x}, ${position.y})`;
+        return `(${position.getX()}, ${position.getY()})`;
     }
 
     /*

@@ -44,7 +44,7 @@ export class GameManager {
      *  Draw an Entity (actor, tile, prop, etc.) to Display 
      */
     private drawEntity(entity: Entity): void {
-        this.display.draw(entity.getPosition().x, entity.getPosition().y, entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
+        this.display.draw(entity.getPosition().getX(), entity.getPosition().getY(), entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
     }
 
     /*
@@ -73,7 +73,7 @@ export class GameManager {
         this.mapManager.setOccupied(this.player.position, true);
         let goblin1: Goblin = new Goblin(new Position(5, 5));
         this.mapManager.setOccupied(goblin1.position, true);
-        let goblin2: Goblin = new Goblin(new Position(this.player.position.x + 1, this.player.position.y));
+        let goblin2: Goblin = new Goblin(new Position(this.player.position.getX() + 1, this.player.position.getY()));
         this.mapManager.setOccupied(goblin2.position, true);
         
         this.actors.push(this.player);

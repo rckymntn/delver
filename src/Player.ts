@@ -41,13 +41,13 @@ export class Player implements Actor {
         });
         if (key.keyCode in this.keyBinds) {
             let dxdy = DIRS[4][this.keyBinds[key.keyCode]];
-            let newPosition = new Position(this.position.x + dxdy[0], this.position.y + dxdy[1]);
+            let newPosition = new Position(this.position.getX() + dxdy[0], this.position.getY() + dxdy[1]);
             if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
                 mapManager.setOccupied(this.position, false);
                 this.position = newPosition;
                 mapManager.setOccupied(this.position, true);
             } else if (mapManager.getOccupied(newPosition)) {
-                console.log(`Position ${newPosition.x}, ${newPosition.y} occupied.`);
+                console.log(`Position ${newPosition.getX()}, ${newPosition.getY()} occupied.`);
             }
         }
     }
