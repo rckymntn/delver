@@ -1,10 +1,26 @@
 export class Position {
-    constructor(public x: number, public y: number) {
+    constructor(private x: number, private y: number) {
         this.x = x;
         this.y = y;
     }
 
-    equals(position: Position): boolean {
-        return (this.x === position.x && this.y === position.y);
+    public getX(): number {
+        return this.x;
+    }
+
+    public setX(x: number): void {
+        this.x = x;
+    }
+
+    public getY(): number {
+        return this.y;
+    }
+
+    public setY(y: number) {
+        this.y = y;
+    }
+    
+    public equals(position: Position): boolean {
+        return (this.getX() === position.getX() && this.getY() === position.getY());
     }
 }
