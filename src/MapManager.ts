@@ -2,6 +2,7 @@ import { Map, RNG } from "rot-js";
 import { Floor } from "./Floor";
 import { Position } from "./Position";
 import { Tile, TileType } from "./Tile";
+import { timer } from "./Decorators";
 import { Wall } from "./Wall";
 
 export class MapManager {
@@ -61,6 +62,7 @@ export class MapManager {
     /*
      *  Create a new digger map 
      */
+    @timer
     public diggerMap(x: number, y: number): void {
         let digger = new Map.Digger(x, y);
         digger.create(this.diggerCallback.bind(this));
@@ -78,6 +80,7 @@ export class MapManager {
     /*
      *  Create a new arena map 
      */
+    @timer
     public arenaMap(x: number, y: number) {
         let arena = new Map.Arena(x, y);
         arena.create(this.arenaCallback.bind(this));
@@ -95,6 +98,7 @@ export class MapManager {
     /*
      *  Create a new maze map
      */
+    @timer
     public mazeMap(x: number, y: number) {
         let maze = new Map.DividedMaze(x, y);
         maze.create(this.mazeCallback.bind(this));
@@ -112,6 +116,7 @@ export class MapManager {
     /*
      *  Create a new cellular automata map
      */
+    @timer
     public cellularMap(x: number, y: number, randomness: number = 0.3) {
         let cellular = new Map.Cellular(x, y);
         cellular.randomize(randomness);
