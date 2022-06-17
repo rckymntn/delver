@@ -6,6 +6,7 @@ import { Goblin } from "./Goblin";
 import { MapManager } from "./MapManager";
 import { Player } from "./Player";
 import { Position } from "./Position";
+import { timer } from "./Decorators";
 
 export class GameManager {
 
@@ -44,7 +45,7 @@ export class GameManager {
      *  Draw an Entity (actor, tile, prop, etc.) to Display 
      */
     private drawEntity(entity: Entity): void {
-        this.display.draw(entity.getPosition().getX(), entity.getPosition().getY(), entity.glyph.char, entity.glyph.fgColor, entity.glyph.bgColor)
+        this.display.draw(entity.getPosition().getX(), entity.getPosition().getY(), entity.glyph.getChar(), entity.glyph.getForegroundColor(), entity.glyph.getBackgroundColor())
     }
 
     /*
