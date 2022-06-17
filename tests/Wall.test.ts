@@ -5,9 +5,9 @@ import { Wall } from "../src/Wall";
 
 test("glyph", () => {
     let wall: Wall = new Wall(new Position(0, 0));
-    expect(wall.glyph.char).toEqual("#");
-    expect(wall.glyph.fgColor).toEqual("lightgray");
-    expect(wall.glyph.bgColor).toEqual("black");
+    expect(wall.glyph.getChar()).toEqual("#");
+    expect(wall.glyph.getForegroundColor()).toEqual("lightgray");
+    expect(wall.glyph.getBackgroundColor()).toEqual("black");
 });
 
 test("position", () => {

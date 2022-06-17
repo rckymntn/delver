@@ -5,9 +5,9 @@ import { Position } from "../src/Position";
 
 test("glyph", () => {
     let player: Player = new Player(new Position(0, 0));
-    expect(player.glyph.char).toEqual("@");
-    expect(player.glyph.fgColor).toEqual("goldenrod");
-    expect(player.glyph.bgColor).toEqual("black");
+    expect(player.glyph.getChar()).toEqual("@");
+    expect(player.glyph.getForegroundColor()).toEqual("goldenrod");
+    expect(player.glyph.getBackgroundColor()).toEqual("black");
 });
 
 test("type", () => {
