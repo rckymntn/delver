@@ -17,31 +17,31 @@ export class Floor implements Tile {
         this.occupied = false;
     }
 
-    getPosition(): Position {
+    public getPosition(): Position {
         return this.position;
     }
 
-    setPosition(posiiton: Position): void {
+    public setPosition(posiiton: Position): void {
         this.position = posiiton;
     }
 
-    getPassable(): boolean {
+    public getPassable(): boolean {
         return this.passable;
     }
 
-    setPassable(bool: boolean): void {
+    public setPassable(bool: boolean): void {
         this.passable = bool;
     }
 
-    getOccupied(): boolean {
+    public getOccupied(): boolean {
         return this.occupied;
     }
 
-    setOccupied(bool: boolean): void {
+    public setOccupied(bool: boolean): void {
         this.occupied = bool;
     }
 
-    getType(): TileType {
+    public getType(): TileType {
         return this.type;
     }
 }
