@@ -6,5 +6,5 @@ export interface Entity {
     glyph: Glyph;
 
     getPosition(): Position;
-    setPosition(posiiton: Position): void;
+    setPosition(position: Position): void;
 }

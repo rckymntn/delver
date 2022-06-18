@@ -21,8 +21,8 @@ export class Wall implements Tile {
         return this.position;
     }
 
-    public setPosition(posiiton: Position): void {
-        this.position = posiiton;
+    public setPosition(position: Position): void {
+        this.position = position;
     }
 
     public getPassable(): boolean {

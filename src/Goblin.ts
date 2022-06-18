@@ -18,8 +18,8 @@ export class Goblin implements Actor {
         return this.position;
     }
 
-    setPosition(posiiton: Position): void {
-        this.position = posiiton;
+    setPosition(position: Position): void {
+        this.position = position;
     }
 
     action(mapManager: MapManager): Promise<any> {

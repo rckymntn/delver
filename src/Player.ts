@@ -29,8 +29,8 @@ export class Player implements Actor {
         return this.position;
     }
 
-    public setPosition(posiiton: Position): void {
-        this.position = posiiton;
+    public setPosition(position: Position): void {
+        this.position = position;
     }
 
     async action(mapManager: MapManager): Promise<any> {
