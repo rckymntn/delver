@@ -8,7 +8,6 @@ export class Player implements Actor {
     
     glyph: Glyph;
     type: ActorType;
-    passable: boolean;
     keyBinds: { [key: number]: number };
     
     // Note to self: Player's starting position needs to be marked as occupied at spawn 

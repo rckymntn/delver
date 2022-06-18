@@ -7,13 +7,11 @@ export class Goblin implements Actor {
     
     glyph: Glyph;
     type: ActorType;
-    passable: boolean;
     
     constructor(public position: Position) {
         this.position = position;
         this.glyph = new Glyph("G", "green", "black");
         this.type = ActorType.Goblin;
-        this.passable = false;
     }
 
     getPosition(): Position {
