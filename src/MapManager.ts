@@ -60,6 +60,32 @@ export class MapManager {
     }
 
     /*
+     *  Generate a map of a random style (digger, arena, maze, cellular)
+     */
+    public randomMap(x: number, y: number): void {
+        let numberOfMapTypes: number = 4;
+        let map: number = Math.floor(Math.random() * numberOfMapTypes);
+        switch (map) {
+            case 0: {
+                this.diggerMap(x, y);
+                break;
+            } case 1: {
+                this.arenaMap(x, y);
+                break;
+            } case 2: {
+                this.mazeMap(x, y);
+                break;
+            } case 3: {
+                this.cellularMap(x, y);
+                break;
+            } default: {
+                this.arenaMap(x, y);
+                break;
+            }
+        }
+    }
+
+    /*
      *  Create a new digger map 
      */
     @timer
@@ -131,4 +157,11 @@ export class MapManager {
         }
         this.map[this.positionToKey(position)] = new Floor(position);
     }
+}
+
+export const enum MapType {
+    Digger,
+    Arena,
+    Maze,
+    Cellular
 }
