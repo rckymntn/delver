@@ -35,7 +35,7 @@ export class GameManager {
         document.body.appendChild(this.display.getContainer());
         
         this.mapManager = new MapManager();
-        this.mapManager.cellularMap(this.displayOptions.width, this.displayOptions.height);
+        this.mapManager.randomMap(this.displayOptions.width, this.displayOptions.height);
 
         this.init();
         this.loop();
