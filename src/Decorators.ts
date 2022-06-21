@@ -1,3 +1,6 @@
+/*
+ *  Timer decorator 
+ */
 export const timer = (target: Object, propertyKey: string, propertyDescriptor: PropertyDescriptor) => {
         const originalMethod = propertyDescriptor.value;
         propertyDescriptor.value = function(...args) {
