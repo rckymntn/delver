@@ -33,7 +33,7 @@ export class Player implements Actor {
         this.position = position;
     }
 
-    async action(mapManager: MapManager): Promise<any> {
+    public async action(mapManager: MapManager): Promise<any> {
         //await new Promise((resolve) => setTimeout(resolve, 100));
         let key: KeyboardEvent = await new Promise((resolve) => {
             window.addEventListener("keydown", resolve, { once: true });
