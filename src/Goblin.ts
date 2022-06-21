@@ -14,15 +14,15 @@ export class Goblin implements Actor {
         this.type = ActorType.Goblin;
     }
 
-    getPosition(): Position {
+    public getPosition(): Position {
         return this.position;
     }
 
-    setPosition(position: Position): void {
+    public setPosition(position: Position): void {
         this.position = position;
     }
 
-    action(mapManager: MapManager): Promise<any> {
+    public action(mapManager: MapManager): Promise<any> {
         return;
     }
 }
