@@ -61,8 +61,8 @@ export class GameManager {
      *  Draw the current map
      */
     private drawMap(): void {
-        for (let key in this.mapManager.map) {
-            this.drawEntity(this.mapManager.map[key]);
+        for (let key in this.mapManager.getMap()) {
+            this.drawEntity(this.mapManager.getMap()[key]);
         }
     }
 
