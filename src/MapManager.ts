@@ -7,10 +7,14 @@ import { Wall } from "./Wall";
 
 export class MapManager {
     
-    map: { [key: string]: Tile };
+    private map: { [key: string]: Tile };
 
     constructor() {
         this.map = {};
+    }
+
+    public getMap() {
+        return this.map;
     }
 
     public getPassable(position: Position): boolean {
