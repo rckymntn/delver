@@ -496,7 +496,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***************************/
 /***/ ((__unused_webpack_module, exports) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.timer = void 0;\r\nvar timer = function (target, propertyKey, propertyDescriptor) {\r\n    var originalMethod = propertyDescriptor.value;\r\n    propertyDescriptor.value = function () {\r\n        var args = [];\r\n        for (var _i = 0; _i < arguments.length; _i++) {\r\n            args[_i] = arguments[_i];\r\n        }\r\n        console.time(\"\".concat(propertyKey));\r\n        originalMethod.apply(this, args);\r\n        console.timeEnd(\"\".concat(propertyKey));\r\n    };\r\n};\r\nexports.timer = timer;\r\n\n\n//# sourceURL=webpack://untitled/./src/Decorators.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.timer = void 0;\r\n/*\r\n *  Timer decorator\r\n */\r\nvar timer = function (target, propertyKey, propertyDescriptor) {\r\n    var originalMethod = propertyDescriptor.value;\r\n    propertyDescriptor.value = function () {\r\n        var args = [];\r\n        for (var _i = 0; _i < arguments.length; _i++) {\r\n            args[_i] = arguments[_i];\r\n        }\r\n        console.time(\"\".concat(propertyKey));\r\n        originalMethod.apply(this, args);\r\n        console.timeEnd(\"\".concat(propertyKey));\r\n    };\r\n};\r\nexports.timer = timer;\r\n\n\n//# sourceURL=webpack://untitled/./src/Decorators.ts?");
 
 /***/ }),
 
