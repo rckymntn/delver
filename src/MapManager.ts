@@ -162,10 +162,3 @@ export class MapManager {
         this.map[this.positionToKey(position)] = new Floor(position);
     }
 }
-
-export const enum MapType {
-    Digger,
-    Arena,
-    Maze,
-    Cellular
-}
