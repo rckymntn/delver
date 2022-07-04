@@ -56,7 +56,7 @@ export class Player implements Actor {
      * // Player action returns a position 
      * // Position is then handled by GameManager to check if new position is occupied or passable and acts accordingly 
      *
-     *async action(mapManager: MapManager): Promise<any> {
+     *async proposeAction(mapManager: MapManager): Promise<any> {
      *    //await new Promise((resolve) => setTimeout(resolve, 100));
      *    let key: KeyboardEvent = await new Promise((resolve) => {
      *        window.addEventListener("keydown", resolve, { once: true });
