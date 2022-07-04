@@ -41,6 +41,13 @@ export class GameManager {
         this.loop();
     }
 
+    private resolveAction(proposedAction: Promise<any>): any {
+        // Takes output from proposeAction() of Actors and does something with it
+        // TODO:
+        // - Update Actor interface to change action() to proposeAction()
+        // - Change from current player action implementation to the new one 
+    }
+
     /*
      *  Draw an Entity (actor, tile, prop, etc.) to Display 
      */
