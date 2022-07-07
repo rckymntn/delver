@@ -2,6 +2,10 @@
 
 A roguelike built with TypeScript and rot.js
 
+## Limitations
+
+- Designed as a static site for GitHub Pages, so no saving player progress 
+
 ## Developer commands 
 
 1. `npm run tests`: Runs the jest tests with coverage metrics located in `tests/`
