@@ -1,5 +1,5 @@
 export class Glyph {
-    constructor(private char: string, private fgColor?: string, private bgColor?: string) {
+    constructor(private char: string, private fgColor: string = "white", private bgColor: string = "black") {
         this.char = char;
         this.fgColor = fgColor;
         this.bgColor = bgColor;
