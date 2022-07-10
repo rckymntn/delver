@@ -24,7 +24,7 @@ export class GameManager {
     constructor() {
         this.displayOptions = {
             width: 75,
-            height: 30,
+            height: 35,
             fontSize: 21,
             spacing: 1.0
         };
@@ -35,7 +35,7 @@ export class GameManager {
         document.body.appendChild(this.display.getContainer());
         
         this.mapManager = new MapManager();
-        this.mapManager.randomMap(this.displayOptions.width, this.displayOptions.height);
+        this.mapManager.randomMap(this.displayOptions.width, this.displayOptions.height - 5);
 
         this.init();
         this.loop();
@@ -71,6 +71,10 @@ export class GameManager {
         for (let key in this.mapManager.getMap()) {
             this.drawEntity(this.mapManager.getMap()[key]);
         }
+    }
+
+    private drawText(position: Position, text: string, width?: number) {
+        this.display.drawText(position.getX(), position.getY(), text, width);
     }
 
     /*
@@ -112,6 +116,7 @@ export class GameManager {
             this.drawEntity(actor);
         }
         this.drawEntity(this.player);
+        this.drawText(new Position(0, 30), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`, this.displayOptions.width);
     }
 
     /*
