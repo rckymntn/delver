@@ -7,6 +7,7 @@ import { MapManager } from "./MapManager";
 import { Player } from "./Player";
 import { Position } from "./Position";
 import { timer } from "./Decorators";
+import { TextAlignment, TextUtil } from "./TextUtil";
 
 export class GameManager {
 
@@ -23,7 +24,7 @@ export class GameManager {
 
     constructor() {
         this.displayOptions = {
-            width: 75,
+            width: 80,
             height: 35,
             fontSize: 21,
             spacing: 1.0
@@ -73,9 +74,28 @@ export class GameManager {
         }
     }
 
-    private drawText(position: Position, text: string, width?: number) {
-        this.display.drawText(position.getX(), position.getY(), text, width);
+
+    /*
+     *
+     */
+    private drawText(position: Position, text: string, width: number = this.displayOptions.width, alignment: TextAlignment = TextAlignment.Left) {
+        switch(alignment) {
+            case TextAlignment.Left: {
+                this.display.drawText(position.getX(), position.getY(), text, width);
+                break;
+            } case TextAlignment.Center: {
+                this.display.drawText(position.getX(), position.getY(), TextUtil.centerPad(text, width), width);
+                break;
+            } case TextAlignment.Right: {
+                this.display.drawText(position.getX(), position.getY(), TextUtil.leftPad(text, width), width);
+                break;
+            } default: {
+                this.display.drawText(position.getX(), position.getY(), text, width);
+                break;
+            }
+        }
     }
+
 
     /*
      *  Populate the map 
@@ -116,7 +136,7 @@ export class GameManager {
             this.drawEntity(actor);
         }
         this.drawEntity(this.player);
-        this.drawText(new Position(0, 30), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`, this.displayOptions.width);
+        this.drawText(new Position(0, 30), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`);
     }
 
     /*
