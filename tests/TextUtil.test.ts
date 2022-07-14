@@ -30,4 +30,4 @@ test("center pad, odd string and odd width", () => {
     let expected: string = "\0abcdefg\0";
     let actual: string = TextUtil.centerPad(string, width);
     expect(expected).toEqual(actual);
-})
+});
