@@ -15,7 +15,7 @@ export class TextUtil {
      *  Adds padding to the left of the string to a maximum width to right justify the string
      */
     public static leftPad(string: string, width: number, paddingChar: string = "\0"): string {
-        let whitespace: number = width - string.length;
+        let whitespace: number = width - string.length; // The total number of whitespace characters
         return(paddingChar.repeat(whitespace) + string);
     }
 }
