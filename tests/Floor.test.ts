@@ -16,16 +16,26 @@ test("position", () => {
     expect(floor.getPosition()).toEqual(new Position(1, 1));
 });
 
-test("occupied", () => {
+test("get occupied", () => {
     let floor: Floor = new Floor(new Position(0, 0));
     expect(floor.getOccupied()).toEqual(false);
-    floor.setOccupied(true);
-    expect(floor.getOccupied()).toEqual(true);
 });
 
-test("passable", () => {
+test("set occupied", () => {
+    let floor: Floor = new Floor(new Position(0, 0));
+    floor.setOccupied(true);
+    expect(floor.getOccupied()).toEqual(true);
+})
+
+test("get passable", () => {
     let floor: Floor = new Floor(new Position(0, 0));
     expect(floor.getPassable()).toEqual(true);
+});
+
+test("set passable", () => {
+    let floor: Floor = new Floor(new Position(0, 0));
+    floor.setPassable(false);
+    expect(floor.getPassable()).toEqual(false);
 });
 
 test("tiletype", () => {
