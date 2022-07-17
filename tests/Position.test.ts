@@ -1,9 +1,25 @@
 import { Position } from "../src/Position";
 
-test("construction of a new position", () => {
-    let position = new Position(0, 0);
+test("getX", () => {
+    let position: Position = new Position(0, 0);
     expect(position.getX()).toEqual(0);
+});
+
+test("setX", () => {
+    let position: Position = new Position(0, 0);
+    position.setX(1);
+    expect(position.getX()).toEqual(1);
+});
+
+test("getY", () => {
+    let position: Position = new Position(0, 0);
     expect(position.getY()).toEqual(0);
+});
+
+test("setY", () => {
+    let position: Position = new Position(0, 0);
+    position.setY(1);
+    expect(position.getY()).toEqual(1);
 });
 
 test("equal positions", () => {
