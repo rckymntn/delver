@@ -17,19 +17,29 @@ test("position", () => {
     expect(wall.getPosition()).toEqual(new Position(1, 1));
 });
 
-test("occupied", () => {
+test("get occupied", () => {
     let wall: Wall = new Wall(new Position(0, 0));
     expect(wall.getOccupied()).toEqual(false);
+});
+
+test("setOccupied", () => {
+    let wall: Wall = new Wall(new Position(0, 0));
     wall.setOccupied(true);
     expect(wall.getOccupied()).toEqual(true);
 });
 
-test("passable", () => {
+test("get passable", () => {
     let wall: Wall = new Wall(new Position(0, 0));
     expect(wall.getPassable()).toEqual(false);
 });
 
+test("setPassable", () => {
+    let wall: Wall = new Wall(new Position(0, 0));
+    wall.setPassable(true);
+    expect(wall.getPassable()).toEqual(true);
+})
+
 test("tiletype", () => {
     let wall: Wall = new Wall(new Position(0, 0));
-    expect(wall.type).toEqual(TileType.Wall);
+    expect(wall.getType()).toEqual(TileType.Wall);
 });
