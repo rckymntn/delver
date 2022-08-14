@@ -108,6 +108,12 @@ export class GameManager {
         let goblin2: Goblin = new Goblin(new Position(this.player.position.getX() + 1, this.player.position.getY()));
         this.mapManager.setOccupied(goblin2.position, true);
         
+        for (let i: number = 0; i < difficulty; i++) {
+            let goblin: Goblin = new Goblin(this.mapManager.getRandomPlayablePosition());
+            this.mapManager.setOccupied(goblin.position, true);
+            this.actors.push(goblin);
+        }
+
         this.actors.push(this.player);
         this.actors.push(goblin1);
         this.actors.push(goblin2);
