@@ -22,6 +22,8 @@ export class GameManager {
 
     private actors: Actor[];
 
+    private floor: number;
+
     constructor() {
         this.displayOptions = {
             width: 80,
@@ -37,6 +39,8 @@ export class GameManager {
         
         this.mapManager = new MapManager();
         this.mapManager.randomMap(this.displayOptions.width, this.displayOptions.height - 5);
+
+        this.floor = 0;
 
         this.init();
         this.loop();
@@ -142,7 +146,8 @@ export class GameManager {
             this.drawEntity(actor);
         }
         this.drawEntity(this.player);
-        this.drawText(new Position(0, 30), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`);
+        this.drawText(new Position(0, 30), `Floor: ${this.floor}`, undefined, TextAlignment.Center);
+        this.drawText(new Position(0, 31), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`);
     }
 
     /*
