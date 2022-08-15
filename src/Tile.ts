@@ -14,5 +14,6 @@ export interface Tile extends Entity {
 
 export const enum TileType {
     Floor,
-    Wall
+    Wall,
+    Stair
 }
