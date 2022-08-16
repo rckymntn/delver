@@ -26,8 +26,8 @@ export class GameManager {
 
     constructor() {
         this.displayOptions = {
-            width: 80,
-            height: 35,
+            width: Math.floor(window.innerWidth / (49 / 4)),        // Originally 80
+            height: Math.floor(window.innerHeight / (941 / 35)),    // Originally 35
             fontSize: 21,
             spacing: 1.0
         };
@@ -146,8 +146,8 @@ export class GameManager {
             this.drawEntity(actor);
         }
         this.drawEntity(this.player);
-        this.drawText(new Position(0, 30), `Floor: ${this.floor}`, undefined, TextAlignment.Center);
-        this.drawText(new Position(0, 31), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`);
+        this.drawText(new Position(0, this.displayOptions.height - 5), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()} on floor ${this.floor}`, undefined, TextAlignment.Center);
+        this.drawText(new Position(0, this.displayOptions.height - 4), `You are at ${this.player.getPosition().getX()}, ${this.player.getPosition().getY()}`);
     }
 
     /*
