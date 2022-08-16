@@ -3,7 +3,7 @@ import { Position } from "./Position";
 import { Tile, TileType } from "./Tile";
 
 
-export class Stairs implements Tile {
+export class Stair implements Tile {
 
     glyph: Glyph;
     type: TileType;
