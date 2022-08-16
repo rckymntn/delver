@@ -4,6 +4,7 @@ import { Position } from "./Position";
 import { Tile, TileType } from "./Tile";
 import { timer } from "./Decorators";
 import { Wall } from "./Wall";
+import { Stair } from "./Stair";
 
 export class MapManager {
     
@@ -31,6 +32,10 @@ export class MapManager {
 
     public setOccupied(position: Position, boolean: boolean): void {
         this.map[this.positionToKey(position)].setOccupied(boolean);
+    }
+
+    public getTileType(position: Position): TileType {
+        return this.map[this.positionToKey(position)].type;
     }
 
     /*
@@ -69,24 +74,30 @@ export class MapManager {
     public randomMap(x: number, y: number): void {
         let numberOfMapTypes: number = 4;
         let map: number = Math.floor(Math.random() * numberOfMapTypes);
-        switch (map) {
-            case 0: {
-                this.diggerMap(x, y);
-                break;
-            } case 1: {
-                this.arenaMap(x, y);
-                break;
-            } case 2: {
-                this.mazeMap(x, y);
-                break;
-            } case 3: {
-                this.cellularMap(x, y);
-                break;
-            } default: {
-                this.arenaMap(x, y);
-                break;
+        try {
+            switch (map) {
+                case 0: {
+                    this.diggerMap(x, y);
+                    break;
+                } case 1: {
+                    this.arenaMap(x, y);
+                    break;
+                } case 2: {
+                    this.mazeMap(x, y);
+                    break;
+                } case 3: {
+                    this.cellularMap(x, y);
+                    break;
+                } default: {
+                    this.arenaMap(x, y);
+                    break;
+                }
             }
+        } catch {
+            this.arenaMap(x, y);
         }
+        let stairPosition = this.getRandomPlayablePosition();
+        this.map[this.positionToKey(stairPosition)] = new Stair(stairPosition);
     }
 
     /*
