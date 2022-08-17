@@ -2,6 +2,19 @@
 
 A roguelike built with TypeScript and rot.js
 
+## To do
+
+- [x] Basic actors, props, and tiles 
+- [x] Map generation 
+- [x] Display 
+- [x] Drawing text 
+- [x] Player movement 
+- [ ] Player field of view 
+- [ ] Simple combat
+- [ ] Variety of NPC behaviors
+- [ ] Item and equipment usage 
+- [ ] Traversal between floors 
+
 ## Limitations
 
 - Designed as a static site for GitHub Pages, so no saving player progress 
