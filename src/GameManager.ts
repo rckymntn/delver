@@ -80,7 +80,7 @@ export class GameManager {
 
 
     /*
-     *
+     *  Draw text with an optional left, center, or right alignment 
      */
     private drawText(position: Position, text: string, width: number = this.displayOptions.width, alignment: TextAlignment = TextAlignment.Left) {
         switch(alignment) {

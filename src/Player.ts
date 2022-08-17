@@ -3,6 +3,7 @@ import { Actor, ActorType } from "./Actor";
 import { Glyph } from "./Glyph";
 import { MapManager } from "./MapManager";
 import { Position } from "./Position";
+import { TileType } from "./Tile";
 
 export class Player implements Actor {
     
@@ -45,6 +46,9 @@ export class Player implements Actor {
                 mapManager.setOccupied(this.position, false);
                 this.position = newPosition;
                 mapManager.setOccupied(this.position, true);
+                if (mapManager.getTileType(newPosition) == TileType.Stair) {
+                    console.log(`Stair`);   // Detect stair collision 
+                }
             } else if (mapManager.getOccupied(newPosition)) {
                 console.log(`Position ${newPosition.getX()}, ${newPosition.getY()} occupied.`);
             }
