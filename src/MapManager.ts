@@ -9,6 +9,7 @@ import { Stair } from "./Stair";
 export class MapManager {
     
     private map: { [key: string]: Tile };
+    private stairPosition: Position;
 
     constructor() {
         this.map = {};
@@ -16,6 +17,10 @@ export class MapManager {
 
     public getMap() {
         return this.map;
+    }
+
+    public getStairPosition() {
+        return this.stairPosition;
     }
 
     public getPassable(position: Position): boolean {
@@ -96,8 +101,8 @@ export class MapManager {
         } catch {
             this.arenaMap(x, y);
         }
-        let stairPosition = this.getRandomPlayablePosition();
-        this.map[this.positionToKey(stairPosition)] = new Stair(stairPosition);
+        this.stairPosition = this.getRandomPlayablePosition();
+        this.map[this.positionToKey(this.stairPosition)] = new Stair(this.stairPosition);
     }
 
     /*
