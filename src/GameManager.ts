@@ -32,6 +32,7 @@ export class GameManager {
             spacing: 1.0
         };
 
+        this.player = new Player(null);
         this.actors = [];
 
         this.display = new Display(this.displayOptions);
@@ -46,11 +47,11 @@ export class GameManager {
         this.loop();
     }
 
-    private resolveAction(proposedAction: Promise<any>): any {
+    private resolveAction(newPosition: Position): any {
         // Takes output from proposeAction() of Actors and does something with it
         // TODO:
         // - Update Actor interface to change action() to proposeAction()
-        // - Change from current player action implementation to the new one 
+        // - Change from current player action implementation to the new one
     }
 
     /*
@@ -105,29 +106,22 @@ export class GameManager {
      *  Populate the map 
      */
     private populate(difficulty: number = 0): void {
-        this.player = new Player(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
+        this.player.setPosition(new Position(this.displayOptions.width >> 1, this.displayOptions.height >> 1));
         this.mapManager.setOccupied(this.player.position, true);
-        let goblin1: Goblin = new Goblin(new Position(5, 5));
-        this.mapManager.setOccupied(goblin1.position, true);
-        let goblin2: Goblin = new Goblin(new Position(this.player.position.getX() + 1, this.player.position.getY()));
-        this.mapManager.setOccupied(goblin2.position, true);
+        this.actors.push(this.player);
         
         for (let i: number = 0; i < difficulty; i++) {
             let goblin: Goblin = new Goblin(this.mapManager.getRandomPlayablePosition());
             this.mapManager.setOccupied(goblin.position, true);
             this.actors.push(goblin);
         }
-
-        this.actors.push(this.player);
-        this.actors.push(goblin1);
-        this.actors.push(goblin2);
     }
 
     /*
      *  Initialize the game
      */
     private init(): void {
-        this.populate();
+        this.populate(this.floor);
         this.scheduler = new Scheduler.Simple();
         for (let actor of this.actors) {
             this.scheduler.add(actor, true);
@@ -140,6 +134,13 @@ export class GameManager {
      *  Refreshing the screen, redrawing everything 
      */
     private refresh(): void {
+        if (this.player.getPosition().equals(this.mapManager.getStairPosition())) {
+            this.floor++; 
+            this.actors = [];
+            this.mapManager.randomMap(this.displayOptions.width, this.displayOptions.height - 5);
+            this.init();
+
+        }
         this.display.clear();
         this.drawMap();
         for (let actor of this.actors) {
