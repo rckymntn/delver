@@ -1,6 +1,6 @@
 # Untitled 
 
-A roguelike built with TypeScript and rot.js
+A portable web-based roguelike game built with TypeScript, rot.js, and tested with Jest. 
 
 ## To do
 
@@ -9,11 +9,32 @@ A roguelike built with TypeScript and rot.js
 - [x] Display 
 - [x] Drawing text 
 - [x] Player movement 
+- [x] Traversal between floors 
 - [ ] Player field of view 
 - [ ] Simple combat
 - [ ] Variety of NPC behaviors
 - [ ] Item and equipment usage 
-- [ ] Traversal between floors 
+
+## Download and
+
+## Edit 
+
+1. Clone the repository locally 
+2. Run `npm install` to install required dependencies 
+3. Review the developer commands listed below or in `package.json`
+4. I recommend using the `npm run watchlive` command and editing some of the attributes in one of the `Actor` classes (`Player`, `Goblin`, etc.) 
+
+
+## Play
+
+1. Clone just the `dist` subdirectory 
+2. Open `index.html` in your choice of web browser
+
+or
+
+1. Clone the repository locally 
+2. Run `npm install` to install required dependencies 
+3. Navigate to root folder and run the command `npm run live`
 
 ## Limitations
 
