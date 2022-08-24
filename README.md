@@ -2,6 +2,8 @@
 
 A portable web-based roguelike game built with TypeScript, rot.js, and tested with Jest. 
 
+![screenshot of delver](dist/images/delver.png)
+
 ## To do
 
 - [x] Basic actors, props, and tiles 
@@ -23,6 +25,8 @@ A portable web-based roguelike game built with TypeScript, rot.js, and tested wi
 4. I recommend using the `npm run watchlive` command and editing some of the attributes in one of the `Actor` classes (`Player`, `Goblin`, etc.) 
 
 ## Download and play
+
+Just a reminder that you can play Delver live [here](https://rckymntn.github.io/delver/), but if you'd prefer to play locally... 
 
 1. Clone just the `dist` subdirectory 
 2. Open `index.html` in your choice of web browser
