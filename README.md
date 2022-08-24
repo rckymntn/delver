@@ -1,4 +1,4 @@
-# Untitled 
+# Delver
 
 A portable web-based roguelike game built with TypeScript, rot.js, and tested with Jest. 
 
@@ -15,17 +15,14 @@ A portable web-based roguelike game built with TypeScript, rot.js, and tested wi
 - [ ] Variety of NPC behaviors
 - [ ] Item and equipment usage 
 
-## Download and
-
-## Edit 
+## Download and edit 
 
 1. Clone the repository locally 
 2. Run `npm install` to install required dependencies 
 3. Review the developer commands listed below or in `package.json`
 4. I recommend using the `npm run watchlive` command and editing some of the attributes in one of the `Actor` classes (`Player`, `Goblin`, etc.) 
 
-
-## Play
+## Download and play
 
 1. Clone just the `dist` subdirectory 
 2. Open `index.html` in your choice of web browser
