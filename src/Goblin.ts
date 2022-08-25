@@ -22,6 +22,9 @@ export class Goblin implements Actor {
         this.position = position;
     }
 
+    /*
+     *  TODO: A* pathfinding to the Player's location, regardless of distance 
+     */
     public action(mapManager: MapManager): Promise<any> {
         return;
     }
