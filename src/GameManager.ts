@@ -8,6 +8,7 @@ import { Player } from "./Player";
 import { Position } from "./Position";
 import { timer } from "./Decorators";
 import { TextAlignment, TextUtil } from "./TextUtil";
+import { Bat } from "./Bat";
 
 export class GameManager {
 
@@ -111,9 +112,16 @@ export class GameManager {
         this.actors.push(this.player);
         
         for (let i: number = 0; i < difficulty; i++) {
-            let goblin: Goblin = new Goblin(this.mapManager.getRandomPlayablePosition());
-            this.mapManager.setOccupied(goblin.position, true);
-            this.actors.push(goblin);
+            let rand: number = Math.floor(Math.random() * 10);
+            if (rand % 2 == 0) {
+                let bat: Bat = new Bat(this.mapManager.getRandomPlayablePosition());
+                this.mapManager.setOccupied(bat.getPosition(), true);
+                this.actors.push(bat);
+            } else {
+                let goblin: Goblin = new Goblin(this.mapManager.getRandomPlayablePosition());
+                this.mapManager.setOccupied(goblin.getPosition(), true);
+                this.actors.push(goblin);
+            }
         }
     }
 
@@ -156,10 +164,10 @@ export class GameManager {
      */
     private async loop(): Promise<any> {
         while (true) {
-            //for (let actor of this.actors) {
-            //    await actor.action(this.mapManager);
-            //}
-            await this.player.action(this.mapManager);
+            for (let actor of this.actors) {
+                await actor.action(this.mapManager);
+            }
+            //await this.player.action(this.mapManager);
             this.refresh();
         }
     }
