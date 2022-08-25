@@ -7,5 +7,6 @@ export interface Actor extends Entity {
 
 export const enum ActorType {
     Player,
-    Goblin
+    Goblin,
+    Bat
 }
