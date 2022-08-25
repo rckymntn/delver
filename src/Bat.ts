@@ -1,4 +1,5 @@
 import { Actor, ActorType } from "./Actor";
+import { timer } from "./Decorators";
 import { Glyph } from "./Glyph";
 import { MapManager } from "./MapManager";
 import { Position } from "./Position";
@@ -30,8 +31,10 @@ export class Bat implements Actor {
      *  
      *  TODO: Make the bat target the player when within a certain distance of each other 
      */
+    @timer
     public action(mapManager: MapManager): Promise<any> {
-        let randDirection: number = Math.floor(Math.random() * 3);
+        let randDirection: number = Math.floor(Math.random() * 4);
+        console.log(randDirection);
         let curPosition: Position = this.getPosition();
         switch (randDirection) {
             case 0: {
