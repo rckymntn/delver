@@ -1,3 +1,4 @@
+import { ActionBehaviors } from "./ActionBehaviors";
 import { Actor, ActorType } from "./Actor";
 import { timer } from "./Decorators";
 import { Glyph } from "./Glyph";
@@ -33,48 +34,7 @@ export class Bat implements Actor {
      */
     @timer
     public action(mapManager: MapManager): Promise<any> {
-        let randDirection: number = Math.floor(Math.random() * 4);
-        console.log(randDirection);
-        let curPosition: Position = this.getPosition();
-        switch (randDirection) {
-            case 0: {
-                // North
-                let newPosition: Position = new Position(curPosition.getX(), curPosition.getY() + 1)
-                if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
-                    mapManager.setOccupied(this.position, false);
-                    this.position = newPosition;
-                    mapManager.setOccupied(this.position, true);
-                }
-                break;
-            } case 1: {
-                // East
-                let newPosition: Position = new Position(curPosition.getX() + 1, curPosition.getY())
-                if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
-                    mapManager.setOccupied(this.position, false);
-                    this.position = newPosition;
-                    mapManager.setOccupied(this.position, true);
-                }
-                break;
-            } case 2: {
-                // South
-                let newPosition: Position = new Position(curPosition.getX(), curPosition.getY() - 1)
-                if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
-                    mapManager.setOccupied(this.position, false);
-                    this.position = newPosition;
-                    mapManager.setOccupied(this.position, true);
-                }
-                break;
-            } case 3: {
-                // West
-                let newPosition: Position = new Position(curPosition.getX() - 1, curPosition.getY())
-                if (mapManager.getPassable(newPosition) && !mapManager.getOccupied(newPosition)) {
-                    mapManager.setOccupied(this.position, false);
-                    this.position = newPosition;
-                    mapManager.setOccupied(this.position, true);
-                }
-                break;
-            }
-        }
+        ActionBehaviors.random(this, mapManager);
         return;
     }
 }
