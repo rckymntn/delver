@@ -27,8 +27,8 @@ export class GameManager {
 
     constructor() {
         this.displayOptions = {
-            width: Math.floor(window.innerWidth / (49 / 4)),        // Originally 80
-            height: Math.floor(window.innerHeight / (941 / 35)),    // Originally 35
+            width: 60,        // Originally 80
+            height: 30,    // Originally 35
             fontSize: 21,
             spacing: 1.0
         };
