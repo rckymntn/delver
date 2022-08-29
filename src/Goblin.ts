@@ -1,3 +1,4 @@
+import { ActionBehaviors } from "./ActionBehaviors";
 import { Actor, ActorType } from "./Actor";
 import { Glyph } from "./Glyph";
 import { MapManager } from "./MapManager";
@@ -26,6 +27,7 @@ export class Goblin implements Actor {
      *  TODO: A* pathfinding to the Player's location, regardless of distance 
      */
     public action(mapManager: MapManager): Promise<any> {
+        ActionBehaviors.random(this, mapManager);
         return;
     }
 }
