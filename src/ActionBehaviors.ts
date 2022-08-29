@@ -47,4 +47,14 @@ export class ActionBehaviors {
             }
         }
     }
+
+    public static aStar(actor: Actor, start: Position, goal: Position, h: any) {
+        // TODO 
+        // https://en.wikipedia.org/wiki/A*_search_algorithm
+        // https://www.geeksforgeeks.org/
+    }
+
+    private static aStarReconstructPath(cameFrom: Position, current: Position) {
+        // TODO
+    }
 }
