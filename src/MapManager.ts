@@ -118,9 +118,10 @@ export class MapManager {
         let position = new Position(x, y);
         if (wall) {
             this.map[this.positionToKey(position)] = new Wall(position);
-            return;
+        } else {
+            this.map[this.positionToKey(position)] = new Floor(position);
+
         }
-        this.map[this.positionToKey(position)] = new Floor(position);
     }
 
     /*
@@ -136,9 +137,9 @@ export class MapManager {
         let position = new Position(x, y);
         if (wall) {
             this.map[this.positionToKey(position)] = new Wall(position);
-            return;
+        } else {
+            this.map[this.positionToKey(position)] = new Floor(position);
         }
-        this.map[this.positionToKey(position)] = new Floor(position);
     }
 
     /*
@@ -155,8 +156,9 @@ export class MapManager {
         if (wall) {
             this.map[this.positionToKey(position)] = new Wall(position);
             return;
+        } else {
+            this.map[this.positionToKey(position)] = new Floor(position);
         }
-        this.map[this.positionToKey(position)] = new Floor(position);
     }
 
     /*
@@ -171,10 +173,10 @@ export class MapManager {
 
     private cellularCallback(x: number, y: number, wall: number) {
         let position = new Position(x, y);
-        if (wall) {
+        if (wall || position.getX() == 0 || position.getX() == 59 || position.getY() == 24 || position.getY() == 0) {
             this.map[this.positionToKey(position)] = new Wall(position);
-            return;
+        } else {
+            this.map[this.positionToKey(position)] = new Floor(position);
         }
-        this.map[this.positionToKey(position)] = new Floor(position);
     }
 }
