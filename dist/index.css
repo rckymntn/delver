@@ -1,10 +1,22 @@
+* {
+    margin: auto;
+    overflow: hidden;
+}
+
 body {
     background-color: black;
 }
 
+.title {
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: monospace;
+}
+
 canvas {
-    padding: 0px;
-    margin: auto;
     display: block;
     border: 1px solid white;
+
 }
