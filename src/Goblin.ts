@@ -26,8 +26,7 @@ export class Goblin implements Actor {
     /*
      *  TODO: A* pathfinding to the Player's location, regardless of distance 
      */
-    public action(mapManager: MapManager): Promise<any> {
+    public action(mapManager: MapManager): void {
         ActionBehaviors.random(this, mapManager);
-        return;
     }
 }

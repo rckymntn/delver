@@ -33,8 +33,7 @@ export class Bat implements Actor {
      *  TODO: Make the bat target the player when within a certain distance of each other 
      */
     @timer
-    public action(mapManager: MapManager): Promise<any> {
+    public action(mapManager: MapManager): void {
         ActionBehaviors.random(this, mapManager);
-        return;
     }
 }
