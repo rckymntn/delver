@@ -626,7 +626,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
   \*********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar GameManager_1 = __webpack_require__(/*! ./GameManager */ \"./src/GameManager.ts\");\r\ndocument.body.onload = function () {\r\n    var gameManager = new GameManager_1.GameManager();\r\n};\r\n\n\n//# sourceURL=webpack://untitled/./src/main.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar GameManager_1 = __webpack_require__(/*! ./GameManager */ \"./src/GameManager.ts\");\r\nvar canvas = document.querySelector(\"canvas\");\r\ndocument.body.onload = function () {\r\n    var gameManager = new GameManager_1.GameManager();\r\n    canvas.width = window.innerWidth;\r\n    canvas.height = window.innerHeight;\r\n};\r\nwindow.addEventListener(\"resize\", function () {\r\n    canvas.width = window.innerWidth;\r\n    canvas.height = window.innerHeight;\r\n});\r\n\n\n//# sourceURL=webpack://untitled/./src/main.ts?");
 
 /***/ })
 
