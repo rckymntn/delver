@@ -34,11 +34,16 @@ export class Player implements Actor {
         this.position = position;
     }
 
-    public async action(mapManager: MapManager): Promise<any> {
-        //await new Promise((resolve) => setTimeout(resolve, 100));
+    private async getKey(): Promise<KeyboardEvent> {
         let key: KeyboardEvent = await new Promise((resolve) => {
-            window.addEventListener("keydown", resolve, { once: true });
+            window.addEventListener("keydown", resolve, {once: true});
         });
+        return key;
+    }
+
+    public async action(mapManager: MapManager) {
+        //await new Promise((resolve) => setTimeout(resolve, 100));
+        let key: KeyboardEvent = await this.getKey();
         if (key.keyCode in this.keyBinds) {
             let dxdy = DIRS[4][this.keyBinds[key.keyCode]];
             let newPosition = new Position(this.position.getX() + dxdy[0], this.position.getY() + dxdy[1]);
