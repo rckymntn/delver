@@ -10,6 +10,9 @@ import { timer } from "./Decorators";
 import { TextAlignment, TextUtil } from "./TextUtil";
 import { Bat } from "./Bat";
 
+/*
+ *  
+ */
 export class GameManager {
 
     private displayOptions;
@@ -27,8 +30,8 @@ export class GameManager {
 
     constructor() {
         this.displayOptions = {
-            width: 60,        // Originally 80
-            height: 30,    // Originally 35
+            width: 60,      // Originally 60
+            height: 30,     // Originally 30
             fontSize: 21,
             spacing: 1.0
         };
