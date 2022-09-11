@@ -1,3 +1,7 @@
+/*
+ *  For anything to be rendered on the map, it needs as position.
+ *  Positions are stored as an x, y coordinate. 
+ */
 export class Position {
     constructor(private x: number, private y: number) {
         this.x = x;
