@@ -6,6 +6,9 @@ import { timer } from "./Decorators";
 import { Wall } from "./Wall";
 import { Stair } from "./Stair";
 
+/*
+ *  All map related things. Generation, getting certain positions, etc. 
+ */
 export class MapManager {
     
     private map: { [key: string]: Tile };
