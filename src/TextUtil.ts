@@ -1,3 +1,6 @@
+/*
+ *  Helper class for text elements, like padding text so that it's rendered with a certain alignment
+ */
 export class TextUtil {
     /*
      *  Adds padding around a string to a maximum width to center justify the string 
